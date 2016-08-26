@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaz;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,9 +14,13 @@ public class Principal extends javax.swing.JFrame {
 
     /**
      * Creates new form Principal
+     * 
      */
+    double v[];
     public Principal() {
         initComponents();
+        txtelemen.requestFocusInWindow();
+        
     }
 
     /**
@@ -31,9 +36,20 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txt1 = new javax.swing.JTextField();
+        txtelemen = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmdsuma = new javax.swing.JButton();
+        cmdmulti = new javax.swing.JButton();
+        cmdmayor = new javax.swing.JButton();
+        cmdmenor = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        txtresul = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        cmdCrear = new javax.swing.JButton();
+        cmdMostrar = new javax.swing.JButton();
+        cmdLlenadomanual = new javax.swing.JButton();
+        cmdLlenadoautomatico = new javax.swing.JButton();
+        cmdBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,7 +57,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("OPERACIONES CON VECTORES");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos iniciales ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 12))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -49,17 +65,85 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel2.setText("Número de elementos:");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
-        jPanel2.add(txt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 70, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 230, 90));
+        txtelemen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtelemenKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtelemen, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 70, -1));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 12))); // NOI18N
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 230, 90));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Operación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 12))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 27, -1, -1));
+        cmdsuma.setText("Sumatoria");
+        cmdsuma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdsumaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdsuma, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 180, 200));
+        cmdmulti.setText("Productoria");
+        jPanel3.add(cmdmulti, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        cmdmayor.setText("Número mayor");
+        jPanel3.add(cmdmayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        cmdmenor.setText("Número menor");
+        jPanel3.add(cmdmenor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 180, 170));
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 12))); // NOI18N
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtresul.setEditable(false);
+        jPanel4.add(txtresul, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 170, -1));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 230, 70));
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 12))); // NOI18N
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cmdCrear.setText("Crear");
+        cmdCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCrearActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        cmdMostrar.setText("Mostrar");
+        cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMostrarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
+
+        cmdLlenadomanual.setText("Llenado Manual");
+        cmdLlenadomanual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLlenadomanualActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cmdLlenadomanual, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 110, -1));
+
+        cmdLlenadoautomatico.setText("Llenado Automatico");
+        cmdLlenadoautomatico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLlenadoautomaticoActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cmdLlenadoautomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+
+        cmdBorrar.setText("Borrar");
+        jPanel5.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 420, 110));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,11 +153,107 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtelemenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtelemenKeyTyped
+    char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+            
+            
+            
+       }
+    }//GEN-LAST:event_txtelemenKeyTyped
+
+    private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
+        // TODO add your handling code here:
+        int element; 
+        
+        if(txtelemen.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite la cantidad de elementos a operar", "Error", JOptionPane.ERROR_MESSAGE);
+            txtelemen.requestFocusInWindow();
+        }else if(txtelemen.getText().trim().equals("0")){
+             JOptionPane.showMessageDialog(this, "La cantidad de elementos debe ser mayor que cero", "Error", JOptionPane.ERROR_MESSAGE);
+            txtelemen.requestFocusInWindow();
+            txtelemen.selectAll();
+        }else{
+            
+            element = Integer.parseInt(txtelemen.getText());
+            v = new double[element];
+            
+            
+            JOptionPane.showMessageDialog(this, "Vector creado satisfactoriamente!");
+            
+            cmdCrear.setEnabled(false);
+            cmdLlenadomanual.setEnabled(true);
+            cmdLlenadoautomatico.setEnabled(true);
+            cmdMostrar.setEnabled(false);
+            cmdBorrar.setEnabled(true);
+            txtelemen.setEditable(false);
+        }
+    }//GEN-LAST:event_cmdCrearActionPerformed
+
+    private void cmdLlenadomanualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadomanualActionPerformed
+        // TODO add your handling code here:
+        double n;
+        for (int i = 0; i < v.length; i++) {
+            n = Double.parseDouble(JOptionPane.showInputDialog(this,"Digite el elemento en la posición:"+ (i+1)));
+            v[i] = n;
+            
+            cmdCrear.setEnabled(false);
+            cmdLlenadomanual.setEnabled(false);
+            cmdLlenadoautomatico.setEnabled(false);
+            cmdMostrar.setEnabled(true);
+            cmdBorrar.setEnabled(true);
+            
+            
+        } 
+    }//GEN-LAST:event_cmdLlenadomanualActionPerformed
+
+    private void cmdLlenadoautomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoautomaticoActionPerformed
+        // TODO add your handling code here:
+       double n, f;
+    if(txtelemen.getText().trim().isEmpty()){
+      JOptionPane.showMessageDialog(this,"Digite el número de elementos a operar","Error",JOptionPane.ERROR_MESSAGE);
+       txtelemen.requestFocusInWindow();
+       
+        }
+    else{
+        f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el limite del llenado automatico"));
+           while (f<v.length){
+            JOptionPane.showMessageDialog(this, "El número no puede ser menor que "+v.length);
+            f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el limite del llenado automatico "));
+           }
+        for (int i = 0; i < v.length; i++) {
+            
+        n=(int)(Math.random()*f + 1);  
+        v[i]=n;
+        }
+      JOptionPane.showMessageDialog(this,"Vector llenado satisfactoriamente");  
+    }
+        
+            cmdCrear.setEnabled(false);
+            cmdLlenadomanual.setEnabled(false);
+            cmdLlenadoautomatico.setEnabled(false);
+            cmdMostrar.setEnabled(true);
+            cmdBorrar.setEnabled(true);
+    }//GEN-LAST:event_cmdLlenadoautomaticoActionPerformed
+
+    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
+        // TODO add your handling code here:
+        for (int i=0 ; i > v.length ; i++){
+        txtresul.append(v[i]+"\n");
+        }       
+    }//GEN-LAST:event_cmdMostrarActionPerformed
+
+    private void cmdsumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsumaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdsumaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,12 +291,23 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton cmdBorrar;
+    private javax.swing.JButton cmdCrear;
+    private javax.swing.JButton cmdLlenadoautomatico;
+    private javax.swing.JButton cmdLlenadomanual;
+    private javax.swing.JButton cmdMostrar;
+    private javax.swing.JButton cmdmayor;
+    private javax.swing.JButton cmdmenor;
+    private javax.swing.JButton cmdmulti;
+    private javax.swing.JButton cmdsuma;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txt1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JTextField txtelemen;
+    private javax.swing.JTextField txtresul;
     // End of variables declaration//GEN-END:variables
 }
