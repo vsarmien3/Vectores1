@@ -20,6 +20,9 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         txtelemen.requestFocusInWindow();
+        cmdLlenadomanual.setEnabled(false);
+        cmdLlenadoautomatico.setEnabled(false);
+        
         
     }
 
@@ -43,10 +46,10 @@ public class Principal extends javax.swing.JFrame {
         cmdmayor = new javax.swing.JButton();
         cmdmenor = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        txtresul = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtresul = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
         cmdCrear = new javax.swing.JButton();
-        cmdMostrar = new javax.swing.JButton();
         cmdLlenadomanual = new javax.swing.JButton();
         cmdLlenadoautomatico = new javax.swing.JButton();
         cmdBorrar = new javax.swing.JButton();
@@ -84,26 +87,45 @@ public class Principal extends javax.swing.JFrame {
                 cmdsumaActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdsuma, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+        jPanel3.add(cmdsuma, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
 
         cmdmulti.setText("Productoria");
-        jPanel3.add(cmdmulti, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        cmdmulti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdmultiActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdmulti, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         cmdmayor.setText("Número mayor");
-        jPanel3.add(cmdmayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+        cmdmayor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdmayorActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdmayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         cmdmenor.setText("Número menor");
-        jPanel3.add(cmdmenor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+        cmdmenor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdmenorActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdmenor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 180, 170));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 180, 200));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtresul.setEditable(false);
-        jPanel4.add(txtresul, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 170, -1));
+        txtresul.setColumns(20);
+        txtresul.setRows(5);
+        jScrollPane1.setViewportView(txtresul);
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 230, 70));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, 70));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 230, 100));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 12))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,15 +136,7 @@ public class Principal extends javax.swing.JFrame {
                 cmdCrearActionPerformed(evt);
             }
         });
-        jPanel5.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
-
-        cmdMostrar.setText("Mostrar");
-        cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdMostrarActionPerformed(evt);
-            }
-        });
-        jPanel5.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
+        jPanel5.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
         cmdLlenadomanual.setText("Llenado Manual");
         cmdLlenadomanual.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +144,7 @@ public class Principal extends javax.swing.JFrame {
                 cmdLlenadomanualActionPerformed(evt);
             }
         });
-        jPanel5.add(cmdLlenadomanual, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 110, -1));
+        jPanel5.add(cmdLlenadomanual, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 110, -1));
 
         cmdLlenadoautomatico.setText("Llenado Automatico");
         cmdLlenadoautomatico.addActionListener(new java.awt.event.ActionListener() {
@@ -138,12 +152,17 @@ public class Principal extends javax.swing.JFrame {
                 cmdLlenadoautomaticoActionPerformed(evt);
             }
         });
-        jPanel5.add(cmdLlenadoautomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+        jPanel5.add(cmdLlenadoautomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
         cmdBorrar.setText("Borrar");
-        jPanel5.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 70, -1));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 420, 110));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 420, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,89 +190,133 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtelemenKeyTyped
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-        // TODO add your handling code here:
-        int element; 
-        
+       
+        int longitud;
         if(txtelemen.getText().trim().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Digite la cantidad de elementos a operar", "Error", JOptionPane.ERROR_MESSAGE);
-            txtelemen.requestFocusInWindow();
-        }else if(txtelemen.getText().trim().equals("0")){
-             JOptionPane.showMessageDialog(this, "La cantidad de elementos debe ser mayor que cero", "Error", JOptionPane.ERROR_MESSAGE);
-            txtelemen.requestFocusInWindow();
-            txtelemen.selectAll();
-        }else{
-            
-            element = Integer.parseInt(txtelemen.getText());
-            v = new double[element];
-            
-            
-            JOptionPane.showMessageDialog(this, "Vector creado satisfactoriamente!");
-            
+        JOptionPane.showMessageDialog(this,"Digite la cantidad de elementos a operar","Error",JOptionPane.ERROR_MESSAGE);
+        txtelemen.requestFocusInWindow();
+       
+        }   
+        else if(Integer.parseInt(txtelemen.getText().trim())==0){
+        JOptionPane.showMessageDialog(this,"La cantidad de elementos no puede ser 0","Error",JOptionPane.ERROR_MESSAGE); 
+        txtelemen.requestFocusInWindow();
+        txtelemen.selectAll();
+        }
+      else{
+          longitud = Integer.parseInt(txtelemen.getText().trim());
+          v=new double[longitud];
+          JOptionPane.showMessageDialog(this,"El vector ha sido creado satisfactoriamente");
+          
             cmdCrear.setEnabled(false);
             cmdLlenadomanual.setEnabled(true);
             cmdLlenadoautomatico.setEnabled(true);
-            cmdMostrar.setEnabled(false);
             cmdBorrar.setEnabled(true);
             txtelemen.setEditable(false);
         }
     }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void cmdLlenadomanualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadomanualActionPerformed
-        // TODO add your handling code here:
-        double n;
-        for (int i = 0; i < v.length; i++) {
-            n = Double.parseDouble(JOptionPane.showInputDialog(this,"Digite el elemento en la posición:"+ (i+1)));
-            v[i] = n;
-            
+    double n;
+    
+        for (int i=0; i<v.length; i++){
+        n=Double.parseDouble(JOptionPane.showInputDialog(this,"Ingrese el elemento número "+(i+1)));
+        v[i]=n;
+        } 
             cmdCrear.setEnabled(false);
             cmdLlenadomanual.setEnabled(false);
             cmdLlenadoautomatico.setEnabled(false);
-            cmdMostrar.setEnabled(true);
             cmdBorrar.setEnabled(true);
-            
-            
-        } 
     }//GEN-LAST:event_cmdLlenadomanualActionPerformed
 
     private void cmdLlenadoautomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoautomaticoActionPerformed
-        // TODO add your handling code here:
-       double n, f;
-    if(txtelemen.getText().trim().isEmpty()){
-      JOptionPane.showMessageDialog(this,"Digite el número de elementos a operar","Error",JOptionPane.ERROR_MESSAGE);
-       txtelemen.requestFocusInWindow();
-       
+    double n, l;
+    
+        l = Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el limite del llenado automatico "));
+        while (l < v.length){
+        JOptionPane.showMessageDialog(this, "El número no puede ser menor que " + v.length);
+        l = Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el limite del llenado automatico "));
         }
-    else{
-        f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el limite del llenado automatico"));
-           while (f<v.length){
-            JOptionPane.showMessageDialog(this, "El número no puede ser menor que "+v.length);
-            f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el limite del llenado automatico "));
-           }
         for (int i = 0; i < v.length; i++) {
             
-        n=(int)(Math.random()*f + 1);  
+        n=(int)(Math.random()*l + 1);  
         v[i]=n;
         }
-      JOptionPane.showMessageDialog(this,"Vector llenado satisfactoriamente");  
-    }
+        JOptionPane.showMessageDialog(this,"Vector llenado satisfactoriamente");  
         
             cmdCrear.setEnabled(false);
             cmdLlenadomanual.setEnabled(false);
             cmdLlenadoautomatico.setEnabled(false);
-            cmdMostrar.setEnabled(true);
             cmdBorrar.setEnabled(true);
     }//GEN-LAST:event_cmdLlenadoautomaticoActionPerformed
 
-    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
-        // TODO add your handling code here:
-        for (int i=0 ; i > v.length ; i++){
-        txtresul.append(v[i]+"\n");
-        }       
-    }//GEN-LAST:event_cmdMostrarActionPerformed
-
     private void cmdsumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsumaActionPerformed
         // TODO add your handling code here:
+        double tot = 0;
+        
+        if(txtelemen.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this,"Digite la cantidad de elementos a operar","Error",JOptionPane.ERROR_MESSAGE);
+        txtelemen.requestFocusInWindow();
+       
+        }     
+        else { for (int i = 0; i < v.length; i++) {
+           
+        tot = tot + v[i];     
+        }
+        txtresul.append(" \nSumatoria: "+tot);
+        }
+          
     }//GEN-LAST:event_cmdsumaActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        // TODO add your handling code here:
+        txtelemen.setText(" ");
+        txtresul.setText(" ");
+        v=null;
+        txtelemen.requestFocusInWindow();
+        
+            cmdCrear.setEnabled(true);
+            cmdLlenadomanual.setEnabled(false);
+            cmdLlenadoautomatico.setEnabled(false);
+            cmdBorrar.setEnabled(true);
+            txtelemen.setEditable(true);
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdmultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdmultiActionPerformed
+        // TODO add your handling code here:
+        double  multi = 1;
+        
+        for (int i = 0; i < v.length; i++) {
+           
+           multi = (multi * v[i]);
+        }
+        txtresul.append("\nProducto: "+ multi);
+    }//GEN-LAST:event_cmdmultiActionPerformed
+
+    private void cmdmayorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdmayorActionPerformed
+        // TODO add your handling code here:
+        double nummayor = 0;
+        
+        for (int i = 0; i < v.length; i++) {
+        if (v[i] > nummayor){
+        nummayor = v[i];
+        }
+        
+        txtresul.append("Número mayor: "+ nummayor);
+        }
+    }//GEN-LAST:event_cmdmayorActionPerformed
+
+    private void cmdmenorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdmenorActionPerformed
+        // TODO add your handling code here:
+        double nummenor = 9999999;
+        
+        for (int i = 0; i < v.length; i++) {
+            if (v[i] < nummenor){
+            nummenor = v[i];
+            }
+        }
+        txtresul.append("\nNúmero menor: "+ nummenor);
+        
+    }//GEN-LAST:event_cmdmenorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,7 +358,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton cmdCrear;
     private javax.swing.JButton cmdLlenadoautomatico;
     private javax.swing.JButton cmdLlenadomanual;
-    private javax.swing.JButton cmdMostrar;
     private javax.swing.JButton cmdmayor;
     private javax.swing.JButton cmdmenor;
     private javax.swing.JButton cmdmulti;
@@ -307,7 +369,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtelemen;
-    private javax.swing.JTextField txtresul;
+    private javax.swing.JTextArea txtresul;
     // End of variables declaration//GEN-END:variables
 }
